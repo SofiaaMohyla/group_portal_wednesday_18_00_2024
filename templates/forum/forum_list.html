@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Форум{% endblock %}
+{% block content %}
+
+    <h1 class="text-center my-4">Форум</h1>
+
+    <a href="{% url 'forum-create' %}" style="text-decoration: none"><h3>Створити гілку</h3></a>
+    <br style=>
+
+    {% for forum in forums %}
+    <h2> <a href="{% url 'forum-detail' forum.pk %}" style="text-decoration: none">{{ forum.title}}</a></h2>
+    <h4> {{ forum.created_at|date:"d F Y" }} </h4>
+    <h4> {{ forum.creator}} </h4>
+    <a href="{% url 'forum-edit' forum.pk %}"> <button type='submit' class="btn btn-primary">Змінити</button></a>
+    <a href="{% url 'forum-delete' forum.pk %}"> <button type='submit' class="btn btn-danger">Видалити гілку</button></a>
+    <br>
+    <br>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %} {{forum.title}} {% endblock %}
+{% block content %}
+
+<h1 class="text-center my-4">{{ forum.title }}</h1>
+
+    <div class="comments mt-4">
+        {% for comment in forum.comments.all %}
+            <div class="comment mb-2">
+                <h3>{{ comment.author.username }}: {{ comment.content }}</h3>
+            </div>
+        {% empty %}
+            <h4>Повідомлення відсутні</h4>
+        {% endfor %}
+    </div>
+    <div class="add-comment mt-4">
+        <form action="{% url 'forum-detail' forum.pk %}" method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="btn btn-primary">Відправити</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

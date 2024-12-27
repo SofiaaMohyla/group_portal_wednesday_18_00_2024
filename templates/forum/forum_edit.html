@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Редагування гілки{% endblock %}
+{% block content %}
+
+
+<h1 class="text-center my-4">Змінення гілки</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="{{ form.title.id_for_label }}" class="custom-label-class">{{ form.title.label }}</label>
+        {{ form.title }}
+        <br>
+        <button type="submit" class="btn btn-primary">Змінити</button>
+        <a href="{% url 'forum-list' %}"> <button type="button" class="btn btn-danger">Назад</button></a>
+    </form>
+
+{% endblock %}
